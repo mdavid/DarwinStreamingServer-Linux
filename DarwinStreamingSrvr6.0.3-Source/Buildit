@@ -86,7 +86,8 @@ case $PLAT in
 		;;		
 
 	Linux.i586 | \
-	Linux.i686)
+	Linux.i686 | \
+	Linux.x86_64)
         echo "Configuring for the "$OSNAME" "$HARDWARENAME" platform"
 		CPLUS=gcc
 		CCOMP=gcc
@@ -95,6 +96,10 @@ case $PLAT in
  		
 		COMPILER_FLAGS="-D_REENTRANT -D__USE_POSIX -D__linux__ -pipe"
         INCLUDE_FLAG="-include"
+
+		if [ "$HARDWARENAME" = "x86_64" ]; then
+			COMPILER_FLAGS="$COMPILER_FLAGS -fPIC"
+		fi
 		
 		CORE_LINK_LIBS="-lpthread -ldl -lstdc++ -lm -lcrypt"
 

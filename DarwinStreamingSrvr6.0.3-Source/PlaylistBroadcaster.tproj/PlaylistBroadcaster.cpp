@@ -2082,7 +2082,7 @@ static void RegisterEventHandlers()
 
 struct sigaction act;
     
-#if defined(sun) || defined(i386) || defined(__MacOSX__) || defined(__powerpc__) || defined (__sgi_cc__) || defined(__osf__) || defined(__hpux__)
+#if defined(sun) || defined(i386) || defined(__x86_64__) || defined(__MacOSX__) || defined(__powerpc__) || defined (__sgi_cc__) || defined(__osf__) || defined(__hpux__)
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = 0;
     act.sa_handler = (void(*)(int))&SignalEventHandler;

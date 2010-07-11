@@ -1,0 +1,56 @@
+--- DarwinStreamingSrvr6.0.3-Source/Buildit.x86_64~	2008-03-26 00:42:25.000000000 +0000
++++ DarwinStreamingSrvr6.0.3-Source/Buildit	2009-08-21 08:46:00.420163560 +0000
+@@ -86,7 +86,8 @@ case $PLAT in
+ 		;;		
+ 
+ 	Linux.i586 | \
+-	Linux.i686)
++	Linux.i686 | \
++	Linux.x86_64)
+         echo "Configuring for the "$OSNAME" "$HARDWARENAME" platform"
+ 		CPLUS=gcc
+ 		CCOMP=gcc
+@@ -95,6 +96,10 @@ case $PLAT in
+  		
+ 		COMPILER_FLAGS="-D_REENTRANT -D__USE_POSIX -D__linux__ -pipe"
+         INCLUDE_FLAG="-include"
++
++		if [ "$HARDWARENAME" = "x86_64" ]; then
++			COMPILER_FLAGS="$COMPILER_FLAGS -fPIC"
++		fi
+ 		
+ 		CORE_LINK_LIBS="-lpthread -ldl -lstdc++ -lm -lcrypt"
+ 
+--- DarwinStreamingSrvr6.0.3-Source/MP3Broadcaster/BroadcasterMain.cpp.x86_64~	2008-05-05 23:28:34.000000000 +0000
++++ DarwinStreamingSrvr6.0.3-Source/MP3Broadcaster/BroadcasterMain.cpp	2009-08-21 08:47:05.796405909 +0000
+@@ -216,7 +216,7 @@ static void RegisterEventHandlers()
+ 
+ struct sigaction act;
+     
+-#if defined(sun) || defined(i386) || defined(__MacOSX__) || defined(__sgi__) || defined(__osf__) || defined(__hpux__) || defined(__linuxppc__)
++#if defined(sun) || defined(i386) || defined(__x86_64__) || defined(__MacOSX__) || defined(__sgi__) || defined(__osf__) || defined(__hpux__) || defined(__linuxppc__)
+     sigemptyset(&act.sa_mask);
+     act.sa_flags = 0;
+     act.sa_handler = (void(*)(int))&SignalEventHandler;
+--- DarwinStreamingSrvr6.0.3-Source/PlaylistBroadcaster.tproj/PlaylistBroadcaster.cpp.x86_64~	2008-05-05 23:28:37.000000000 +0000
++++ DarwinStreamingSrvr6.0.3-Source/PlaylistBroadcaster.tproj/PlaylistBroadcaster.cpp	2009-08-21 08:46:00.420163560 +0000
+@@ -2082,7 +2082,7 @@ static void RegisterEventHandlers()
+ 
+ struct sigaction act;
+     
+-#if defined(sun) || defined(i386) || defined(__MacOSX__) || defined(__powerpc__) || defined (__sgi_cc__) || defined(__osf__) || defined(__hpux__)
++#if defined(sun) || defined(i386) || defined(__x86_64__) || defined(__MacOSX__) || defined(__powerpc__) || defined (__sgi_cc__) || defined(__osf__) || defined(__hpux__)
+ 	sigemptyset(&act.sa_mask);
+ 	act.sa_flags = 0;
+     act.sa_handler = (void(*)(int))&SignalEventHandler;
+--- DarwinStreamingSrvr6.0.3-Source/Server.tproj/main.cpp.x86_64~	2008-05-05 23:28:36.000000000 +0000
++++ DarwinStreamingSrvr6.0.3-Source/Server.tproj/main.cpp	2009-08-21 08:46:00.420163560 +0000
+@@ -216,7 +216,7 @@ int main(int argc, char * argv[]) 
+     //(void) ::signal(SIGPIPE, SIG_IGN);
+     struct sigaction act;
+     
+-#if defined(sun) || defined(i386) || defined (__MacOSX__) || defined(__powerpc__) || defined (__osf__) || defined (__sgi_cc__) || defined (__hpux__)
++#if defined(sun) || defined(i386) || defined(__x86_64__) || defined (__MacOSX__) || defined(__powerpc__) || defined (__osf__) || defined (__sgi_cc__) || defined (__hpux__)
+     sigemptyset(&act.sa_mask);
+     act.sa_flags = 0;
+     act.sa_handler = (void(*)(int))&sigcatcher;
