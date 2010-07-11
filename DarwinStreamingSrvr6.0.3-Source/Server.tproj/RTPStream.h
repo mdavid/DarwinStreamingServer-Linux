@@ -57,7 +57,7 @@
 
 #include "RTCPPacket.h"
 
-#include "RTSPRequest3gpp.h"
+#include "RTSPRequest3GPP.h"
 
 #ifndef MIN
 #define	MIN(a,b) (((a)<(b))?(a):(b))

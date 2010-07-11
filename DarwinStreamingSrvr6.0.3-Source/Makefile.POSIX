@@ -21,6 +21,7 @@ CCFLAGS += -IAPIModules
 CCFLAGS += -IAPICommonCode
 CCFLAGS += -IAPIModules/OSMemory_Modules
 CCFLAGS += -IAPIModules/QTSSAccessLogModule
+CCFLAGS += -IAPIModules/QTSSDSAuthModule
 CCFLAGS += -IAPIModules/QTSSFileModule
 CCFLAGS += -IAPIModules/QTSSFlowControlModule
 CCFLAGS += -IAPIModules/QTSSReflectorModule
@@ -71,13 +72,17 @@ CPPFILES = 	Server.tproj/QTSSExpirationDate.cpp\
 			Server.tproj/RTPBandwidthTracker.cpp \
 			Server.tproj/RTPOverbufferWindow.cpp \
 			Server.tproj/RTPSessionInterface.cpp\
+			Server.tproj/RTPSession3GPP.cpp \
 			Server.tproj/RTPStream.cpp \
+			Server.tproj/RTPStream3gpp.cpp \
 			Server.tproj/RTSPProtocol.cpp\
 			Server.tproj/RTSPRequest.cpp \
+			Server.tproj/RTSPRequest3GPP.cpp \
 			Server.tproj/RTSPRequestInterface.cpp\
 			Server.tproj/RTSPRequestStream.cpp \
 			Server.tproj/RTSPResponseStream.cpp\
 			Server.tproj/RTSPSession.cpp \
+			Server.tproj/RTSPSession3GPP.cpp \
 			Server.tproj/RTSPSessionInterface.cpp\
 			Server.tproj/main.cpp \
 			Server.tproj/RunServer.cpp \
@@ -92,6 +97,8 @@ CPPFILES = 	Server.tproj/QTSSExpirationDate.cpp\
 			HTTPUtilitiesLib/HTTPProtocol.cpp \
 			HTTPUtilitiesLib/HTTPRequest.cpp \
 			RTCPUtilitiesLib/RTCPAPPPacket.cpp\
+			RTCPUtilitiesLib/RTCPAPPNADUPacket.cpp \
+			RTCPUtilitiesLib/RTCPAPPQTSSPacket.cpp \
 			RTCPUtilitiesLib/RTCPPacket.cpp \
 			RTCPUtilitiesLib/RTCPSRPacket.cpp\
 			RTCPUtilitiesLib/RTCPAckPacket.cpp\
@@ -102,6 +109,7 @@ CPPFILES = 	Server.tproj/QTSSExpirationDate.cpp\
 			APICommonCode/SDPSourceInfo.cpp \
 			APICommonCode/SourceInfo.cpp \
 			APICommonCode/QTAccessFile.cpp \
+			APICommonCode/QTSS3GPPModuleUtils.cpp \
 			SafeStdLib/InternalStdLib.cpp \
 			APIModules/QTSSAccessLogModule/QTSSAccessLogModule.cpp \
 			APIModules/QTSSFileModule/QTSSFileModule.cpp \

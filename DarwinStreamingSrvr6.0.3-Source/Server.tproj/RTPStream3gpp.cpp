@@ -34,7 +34,7 @@
 #include "RTPStream.h"
 #include "RTPStream3gpp.h"
 #include "RTPSessionInterface.h"
-#include "RTSPRequest3gpp.h"
+#include "RTSPRequest3GPP.h"
 #include "RTCPAPPNADUPacket.h"
 
 #if DEBUG

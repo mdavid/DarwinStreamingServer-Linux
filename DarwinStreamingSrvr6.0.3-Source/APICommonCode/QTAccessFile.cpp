@@ -46,7 +46,9 @@
 
 
 #include <grp.h>
+#ifdef __MacOSX__
 #include <membership.h>
+#endif
 #include <pwd.h>
 #include <signal.h>
 #include <unistd.h>
@@ -613,6 +615,7 @@ if (DEBUG_QTACCESS)
 
 bool DSAccessFile::CheckGroupMembership(const char* inUsername, const char* inGroupName)
 {   
+#ifdef __MacOSX__
 	// In Tiger, group membership is painfully simple: we ask memberd for it!
 	struct passwd	*user		= NULL;
 	struct group	*group		= NULL;
@@ -641,6 +644,16 @@ bool DSAccessFile::CheckGroupMembership(const char* inUsername, const char* inGr
 	if ( mbr_check_membership(userID, groupID, &isMember) )
 		return false;
 	return (bool)isMember;
+#else
+	struct group *group = getgrnam(inGroupName);
+	if(!group)
+		return false;
+	int i=0;
+	while(group->gr_mem[i])
+		if(!strcasecmp(inUsername, group->gr_mem[i]))
+			return true;
+	return false;
+#endif
 }
 
 Bool16 DSAccessFile::ValidUser( char*userName, void* extraDataPtr)

@@ -38,7 +38,7 @@
 #include "RTSPProtocol.h" 
 #include "QTSServerInterface.h"
 #include "QTSS.h"
-#include "RTSPRequest3gpp.h"
+#include "RTSPRequest3GPP.h"
 
 #include "OS.h"
 #include "OSMemory.h"

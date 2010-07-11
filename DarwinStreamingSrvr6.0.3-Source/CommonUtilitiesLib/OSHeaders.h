@@ -120,18 +120,24 @@
 
     
 #elif __linux__ || __linuxppc__ || __FreeBSD__
+
+    #include <stdint.h>
     
     /* Defines */
     #define _64BITARG_ "q"
     #define _S64BITARG_ "lld"
     #define _U64BITARG_ "llu"
-#if __LP64__
+    #if __LP64__
 	#define _S32BITARG_ "d"
 	#define _U32BITARG_ "u"
-#else
+        #define _SPOINTERSIZEARG_ _S64BITARG_
+        #define _UPOINTERSIZEARG_ _U64BITARG_
+    #else
 	#define _S32BITARG_ "ld"
 	#define _U32BITARG_ "lu"
-#endif
+        #define _SPOINTERSIZEARG_ _S32BITARG_
+        #define _UPOINTERSIZEARG_ _U32BITARG_
+    #endif
 
     /* paths */
     #define kEOLString "\n"
@@ -146,17 +152,26 @@
     #define QT_TIME_TO_LOCAL_TIME   (-2082844800)
     #define QT_PATH_SEPARATOR       '/'
 
+    #define kSInt16_Max (SInt16) SHRT_MAX
+    #define kUInt16_Max (UInt16) USHRT_MAX
+
+    #define kSInt32_Max (SInt32) LONG_MAX
+    #define kUInt32_Max (UInt32) ULONG_MAX
+
+    #define kSInt64_Max (SInt64) LONG_LONG_MAX
+    #define kUInt64_Max (UInt64) ULONG_LONG_MAX
+
     /* Typedefs */
     typedef signed long         PointerSizedInt;
     typedef unsigned long       PointerSizedUInt;
-    typedef unsigned char       UInt8;
-    typedef signed char         SInt8;
-    typedef unsigned short      UInt16;
-    typedef signed short        SInt16;
-    typedef unsigned int	UInt32;
-    typedef signed int		SInt32;
-    typedef signed int int 	SInt64;
-    typedef unsigned int int 	UInt64;
+    typedef uint8_t             UInt8;
+    typedef int8_t              SInt8;
+    typedef uint16_t            UInt16;
+    typedef int16_t             SInt16;
+    typedef uint32_t    	UInt32;
+    typedef int32_t   		SInt32;
+    typedef int64_t         	SInt64;
+    typedef uint64_t          	UInt64;
     typedef float               Float32;
     typedef double              Float64;
     typedef UInt16              Bool16;

@@ -32,7 +32,7 @@
 */
 
 
-#include "RTSPRequest3gpp.h"
+#include "RTSPRequest3GPP.h"
 #include "RTSPProtocol.h"
 #include "QTSServerInterface.h"
 
