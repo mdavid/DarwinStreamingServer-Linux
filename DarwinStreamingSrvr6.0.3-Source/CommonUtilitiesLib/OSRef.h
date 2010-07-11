@@ -45,6 +45,7 @@
 #include "StrPtrLen.h"
 #include "OSHashTable.h"
 #include "OSCond.h"
+#include "OSHeaders.h"
 
 class OSRefKey;
 

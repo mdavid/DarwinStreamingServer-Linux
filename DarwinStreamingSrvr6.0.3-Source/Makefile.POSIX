@@ -21,7 +21,6 @@ CCFLAGS += -IAPIModules
 CCFLAGS += -IAPICommonCode
 CCFLAGS += -IAPIModules/OSMemory_Modules
 CCFLAGS += -IAPIModules/QTSSAccessLogModule
-CCFLAGS += -IAPIModules/QTSSDSAuthModule
 CCFLAGS += -IAPIModules/QTSSFileModule
 CCFLAGS += -IAPIModules/QTSSFlowControlModule
 CCFLAGS += -IAPIModules/QTSSReflectorModule
@@ -43,7 +42,6 @@ CCFLAGS += -IHTTPUtilitiesLib
 CCFLAGS += -IRTPMetaInfoLib
 CCFLAGS += -IPrefsSourceLib
 CCFLAGS += -IServer.tproj
-
 # EACH DIRECTORY WITH A STATIC LIBRARY MUST BE APPENDED IN THIS MANNER TO THE LINKOPTS
 
 LINKOPTS = -LCommonUtilitiesLib
@@ -53,42 +51,42 @@ C++FLAGS = $(CCFLAGS)
 
 CFILES = CommonUtilitiesLib/daemon.c
 
-CPPFILES = 	Server.tproj/QTSSExpirationDate.cpp\
+CPPFILES =              Server.tproj/GenerateXMLPrefs.cpp \
+			Server.tproj/main.cpp \
 			Server.tproj/QTSSCallbacks.cpp \
-			Server.tproj/QTSSDictionary.cpp\
 			Server.tproj/QTSSDataConverter.cpp \
+			Server.tproj/QTSSDictionary.cpp \
 			Server.tproj/QTSSErrorLogModule.cpp \
-			Server.tproj/QTSSMessages.cpp\
-			Server.tproj/QTSSModule.cpp \
-			Server.tproj/QTSServerPrefs.cpp\
-			Server.tproj/QTSSSocket.cpp\
-			Server.tproj/QTSSFile.cpp\
-			Server.tproj/QTSSPrefs.cpp \
-			Server.tproj/QTSServer.cpp\
+			Server.tproj/QTSServer.cpp \
 			Server.tproj/QTSServerInterface.cpp \
-			Server.tproj/RTCPTask.cpp\
-			Server.tproj/RTPSession.cpp \
-			Server.tproj/RTPPacketResender.cpp \
+			Server.tproj/QTSServerPrefs.cpp \
+			Server.tproj/QTSSExpirationDate.cpp \
+			Server.tproj/QTSSFile.cpp \
+			Server.tproj/QTSSMessages.cpp \
+			Server.tproj/QTSSModule.cpp \
+			Server.tproj/QTSSPrefs.cpp \
+			Server.tproj/QTSSSocket.cpp \
+			Server.tproj/QTSSUserProfile.cpp \
+			Server.tproj/RTCPTask.cpp \
 			Server.tproj/RTPBandwidthTracker.cpp \
 			Server.tproj/RTPOverbufferWindow.cpp \
-			Server.tproj/RTPSessionInterface.cpp\
+			Server.tproj/RTPPacketResender.cpp \
 			Server.tproj/RTPSession3GPP.cpp \
-			Server.tproj/RTPStream.cpp \
+			Server.tproj/RTPSession.cpp \
+			Server.tproj/RTPSessionInterface.cpp \
 			Server.tproj/RTPStream3gpp.cpp \
-			Server.tproj/RTSPProtocol.cpp\
-			Server.tproj/RTSPRequest.cpp \
+			Server.tproj/RTPStream.cpp \
+			Server.tproj/RTSPProtocol.cpp \
 			Server.tproj/RTSPRequest3GPP.cpp \
-			Server.tproj/RTSPRequestInterface.cpp\
+			Server.tproj/RTSPRequest.cpp \
+			Server.tproj/RTSPRequestInterface.cpp \
 			Server.tproj/RTSPRequestStream.cpp \
-			Server.tproj/RTSPResponseStream.cpp\
-			Server.tproj/RTSPSession.cpp \
+			Server.tproj/RTSPResponseStream.cpp \
 			Server.tproj/RTSPSession3GPP.cpp \
-			Server.tproj/RTSPSessionInterface.cpp\
-			Server.tproj/main.cpp \
+			Server.tproj/RTSPSession.cpp \
+			Server.tproj/RTSPSessionInterface.cpp \
 			Server.tproj/RunServer.cpp \
-			Server.tproj/GenerateXMLPrefs.cpp \
-			Server.tproj/QTSSUserProfile.cpp\
-			PrefsSourceLib/FilePrefsSource.cpp\
+			PrefsSourceLib/FilePrefsSource.cpp \
 			PrefsSourceLib/XMLPrefsParser.cpp \
 			PrefsSourceLib/XMLParser.cpp \
 			OSMemoryLib/OSMemory.cpp \
@@ -96,13 +94,13 @@ CPPFILES = 	Server.tproj/QTSSExpirationDate.cpp\
 			RTSPClientLib/ClientSocket.cpp \
 			HTTPUtilitiesLib/HTTPProtocol.cpp \
 			HTTPUtilitiesLib/HTTPRequest.cpp \
-			RTCPUtilitiesLib/RTCPAPPPacket.cpp\
+			RTCPUtilitiesLib/RTCPAckPacket.cpp \
 			RTCPUtilitiesLib/RTCPAPPNADUPacket.cpp \
+			RTCPUtilitiesLib/RTCPAPPPacket.cpp \
 			RTCPUtilitiesLib/RTCPAPPQTSSPacket.cpp \
 			RTCPUtilitiesLib/RTCPPacket.cpp \
-			RTCPUtilitiesLib/RTCPSRPacket.cpp\
-			RTCPUtilitiesLib/RTCPAckPacket.cpp\
-			RTPMetaInfoLib/RTPMetaInfoPacket.cpp\
+			RTCPUtilitiesLib/RTCPSRPacket.cpp \
+			RTPMetaInfoLib/RTPMetaInfoPacket.cpp \
 			APIStubLib/QTSS_Private.cpp \
 			APICommonCode/QTSSModuleUtils.cpp\
 			APICommonCode/QTSSRollingLog.cpp \
@@ -137,7 +135,7 @@ CPPFILES = 	Server.tproj/QTSSExpirationDate.cpp\
 			APIModules/QTSSAccessModule/QTSSAccessModule.cpp \
 			APIModules/QTSSHttpFileModule/QTSSHttpFileModule.cpp \
 			APIModules/QTSSAccessModule/AccessChecker.cpp
-			
+
 # CCFLAGS += $(foreach dir,$(HDRS),-I$(dir))
 
 LIBFILES = 	QTFileLib/libQTFileLib.a \

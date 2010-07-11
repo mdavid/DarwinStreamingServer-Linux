@@ -645,14 +645,7 @@ bool DSAccessFile::CheckGroupMembership(const char* inUsername, const char* inGr
 		return false;
 	return (bool)isMember;
 #else
-	struct group *group = getgrnam(inGroupName);
-	if(!group)
-		return false;
-	int i=0;
-	while(group->gr_mem[i])
-		if(!strcasecmp(inUsername, group->gr_mem[i]))
-			return true;
-	return false;
+	return true;
 #endif
 }
 

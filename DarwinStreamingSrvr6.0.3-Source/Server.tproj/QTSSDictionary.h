@@ -215,7 +215,8 @@ class QTSSDictionary : public QTSSStream
 		Bool16				fMyMutex;
 		Bool16				fLocked;
         
-        void DeleteAttributeData(DictValueElement* inDictValues, UInt32 inNumValues);
+        void DeleteAttributeData(DictValueElement* inDictValues,
+                                 UInt32 inNumValues, QTSSDictionaryMap* theMap);
 };
 
 
@@ -271,7 +272,11 @@ class QTSSDictionaryMap
         // CONSTRUCTOR / DESTRUCTOR
         
         QTSSDictionaryMap(UInt32 inNumReservedAttrs, UInt32 inFlags = kNoFlags);
-        ~QTSSDictionaryMap(){ delete fAttrArray; }
+        ~QTSSDictionaryMap() {
+            for (UInt32 i = 0; i < fAttrArraySize; i++)
+                delete fAttrArray[i];
+            delete [] fAttrArray;
+        }
 
         //
         // QTSS API CALLS

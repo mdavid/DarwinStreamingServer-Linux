@@ -86,14 +86,19 @@ case $PLAT in
 		;;		
 
 	Linux.i586 | \
-	Linux.i686)
+	Linux.i686 | \
+	Linux.x86_64 )
         echo "Configuring for the "$OSNAME" "$HARDWARENAME" platform"
 		CPLUS=gcc
 		CCOMP=gcc
 		LINKER='gcc'
  		MAKE=make
  		
-		COMPILER_FLAGS="-D_REENTRANT -D__USE_POSIX -D__linux__ -pipe"
+		if [ "$PLAT" = "Linux.x86_64" ]; then
+			COMPILER_FLAGS="-D_REENTRANT -D__USE_POSIX -D__linux__ -pipe -fPIC"
+		else
+			COMPILER_FLAGS="-D_REENTRANT -D__USE_POSIX -D__linux__ -pipe"
+		fi
         INCLUDE_FLAG="-include"
 		
 		CORE_LINK_LIBS="-lpthread -ldl -lstdc++ -lm -lcrypt"

@@ -212,15 +212,17 @@ void QTSSMessages::Initialize()
 }
 
 QTSSMessages::QTSSMessages(PrefsSource* inMessages)
-: QTSSDictionary(QTSSDictionaryMap::GetMap(QTSSDictionaryMap::kTextMessagesDictIndex))
+: QTSSDictionary(QTSSDictionaryMap::GetMap(QTSSDictionaryMap::kTextMessagesDictIndex)),
+  numAttrs(GetDictionaryMap()->GetNumAttrs())
 {
     static const UInt32 kMaxMessageSize = 2048;
     char theMessage[kMaxMessageSize];
     
     // Use the names of the attributes in the attribute map as the key values for
     // finding preferences in the config file.
-    
-    for (UInt32 x = 0; x < this->GetDictionaryMap()->GetNumAttrs(); x++)
+    attrBuffer = NEW char* [numAttrs];
+    ::memset(attrBuffer, 0, sizeof(char*) * numAttrs);
+    for (UInt32 x = 0; x < numAttrs; x++)
     {
         theMessage[0] = '\0';
         (void)inMessages->GetValue(this->GetDictionaryMap()->GetAttrName(x), &theMessage[0]);
@@ -248,9 +250,10 @@ QTSSMessages::QTSSMessages(PrefsSource* inMessages)
         // the new attribute, and copy the data into the newly allocated buffer
         if (theMessage[0] != '\0')
         {
-            char* attrBuffer = NEW char[::strlen(theMessage) + 2];
-            ::strcpy(attrBuffer, theMessage);
-            this->SetVal(this->GetDictionaryMap()->GetAttrID(x), attrBuffer, ::strlen(attrBuffer));
+            attrBuffer[x] = NEW char[::strlen(theMessage) + 2];
+            ::strcpy(attrBuffer[x], theMessage);
+            this->SetVal(this->GetDictionaryMap()->GetAttrID(x),
+                         attrBuffer[x], ::strlen(attrBuffer[x]));
         }
     }
 }

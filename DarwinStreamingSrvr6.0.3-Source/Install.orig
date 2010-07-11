@@ -184,7 +184,7 @@ fi
 
 if [ "$noperlpath" = "" ]; then
 	echo "Inserting path to perl into scripts.."
-	$perl WebAdmin/perlpath.pl $perl WebAdmin/src/streamingadminserver.pl WebAdmin/WebAdminHtml/parse_xml.cgi 
+	$perl perlpath.pl $perl streamingadminserver.pl AdminHtml/parse_xml.cgi 
     echo ""
 fi
 
@@ -213,13 +213,13 @@ fi
 	
 	
 	echo copying "PlaylistBroadcaster" to "/usr/local/bin/PlaylistBroadcaster"
-	cp -f ./PlaylistBroadcaster.tproj/PlaylistBroadcaster /usr/local/bin/
+	cp -f PlaylistBroadcaster /usr/local/bin/
 	
 	echo copying "MP3Broadcaster" to "/usr/local/bin/MP3Broadcaster"
-	cp -f ./MP3Broadcaster/MP3Broadcaster /usr/local/bin/
+	cp -f MP3Broadcaster /usr/local/bin/
 	
 	echo copying "qtpasswd" to "/usr/local/bin/qtpasswd"
-	cp -f ./qtpasswd.tproj/qtpasswd /usr/local/bin/
+	cp -f qtpasswd /usr/local/bin/
 
 	# For now, do not copy modules as there are no supported dynamic modules
 	# echo copying modules to "/usr/local/sbin/StreamingServerModules"
@@ -227,7 +227,7 @@ fi
 		echo creating "/usr/local/sbin/StreamingServerModules" directory
 		mkdir /usr/local/sbin/StreamingServerModules
 	fi
-	#cp -f StreamingServerModules/* /usr/local/sbin/StreamingServerModules/
+	cp -f StreamingServerModules/* /usr/local/sbin/StreamingServerModules/
 
 	if [ -e /usr/local/sbin/StreamingServerModules/QTSSHomeDirectoryModule ]; then
 		echo copying "createuserstreamingdir" to "/usr/local/bin/createuserstreamingdir"
@@ -273,10 +273,10 @@ fi
 	fi
 	
 	echo copying "readme.txt" to "/var/streaming/readme.txt"
-	cp -f ./Documentation/readme.txt /var/streaming/readme.txt
+	cp -f readme.txt /var/streaming/readme.txt
 	
 	echo copying "3rdPartyAcknowledgements.rtf" to "/var/streaming/3rdPartyAcknowledgements.rtf"
-	cp -f ./Documentation/3rdPartyAcknowledgements.rtf /var/streaming/3rdPartyAcknowledgements.rtf
+	cp -f 3rdPartyAcknowledgements.rtf /var/streaming/3rdPartyAcknowledgements.rtf
 	
 	if [ ! -d /var/streaming/logs ]; then
 		echo creating "/var/streaming/logs" directory
@@ -324,27 +324,27 @@ fi
 
 if [ -e StreamingLoadTool ]; then
 	echo copying "StreamingLoadTool" to "/usr/local/bin/StreamingLoadTool"
-	cp -f ./StreamingLoadTool/StreamingLoadTool /usr/local/bin/
+	cp -f StreamingLoadTool /usr/local/bin/
 	
 	echo copying "streamingloadtool.conf" to "/etc/streaming/streamingloadtool.conf"
-	cp -f ./StreamingLoadTool/streamingloadtool.conf /etc/streaming/
+	cp -f streamingloadtool.conf /etc/streaming/
 fi
 	
 	#WebAdmin install
 	echo copying "streamingadminserver.pl" into "/usr/local/sbin/streamingadminserver.pl"
-	cp -f ./WebAdmin/src/streamingadminserver.pl /usr/local/sbin/streamingadminserver.pl
+	cp -f streamingadminserver.pl /usr/local/sbin/streamingadminserver.pl
 	
 	if [ -d /var/streaming/AdminHtml/ ]; then
 	    echo removing old version of html from "/var/streaming/AdminHtml"
-	    rm -r -f /var/streaming/AdminHtml
+	    rm -r -f /var/streaming/AdminHtml/*
 	fi    
 	
 	if [ ! -d /var/streaming/ ]; then
 		echo creating "/var/streaming/AdminHtml" directory
-		mkdir -p /var/streaming/
+		mkdir -p /var/streaming/AdminHtml
 	fi
 	echo copying Admin HTML to "/var/streaming/AdminHtml" directory
-	cp -f -r WebAdmin/WebAdminHtml /var/streaming/AdminHtml
+	cp -f -r AdminHtml /var/streaming/
 	
 
 	chown -R -f qtss /var/streaming/

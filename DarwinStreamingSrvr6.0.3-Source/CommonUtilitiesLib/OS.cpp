@@ -220,7 +220,7 @@ SInt32 OS::GetGMTOffset()
     return ((tzInfo.Bias / 60) * -1);
 #else
       
-    time_t clock;
+    time_t clock = 0; //Make 'clock' initialized for valgrind
     struct tm  *tmptr= localtime(&clock);
     if (tmptr == NULL)
         return 0;
